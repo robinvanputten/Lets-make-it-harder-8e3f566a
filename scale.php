@@ -8,19 +8,13 @@ if ($weight1 == $weight2) {
 	echo "In balans\n";
 }
 else {
+	$difference = $weight1 - $weight2;
 	if ($weight1 < $weight2) {
 		$difference = $weight2 - $weight1;
 	}
-	else {
-		$difference = $weight1 - $weight2;
-	}
 	$weights_necessary = [];
 	foreach ($weights as $single_weight) {
-		if ($single_weight == $difference) {
-			$weights_necessary[] = $single_weight;
-			$difference = $difference - $single_weight;
-		}
-		else if ($single_weight < $difference) {
+		if ($single_weight <= $difference) {
 			$weights_necessary[] = $single_weight;
 			$difference = $difference - $single_weight;
 		}
@@ -29,8 +23,7 @@ else {
 		echo "Niet in balans\n";
 	} 
 	else {
-		echo implode(", ", $weights_necessary);
-		echo "\n";
+		echo implode(", ", $weights_necessary) . "\n";
 	}
 }
 ?>
